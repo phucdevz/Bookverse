@@ -39,16 +39,6 @@ Dự án hướng tới **bảo mật, dễ mở rộng và trải nghiệm ngư
 
 ---
 
-## 📂 Cấu trúc dự án
-
-Bookverse/
-│── frontend/ # Giao diện PHP + HTML + CSS
-│── backend/ # Node.js (Express)
-│── database/ # MongoDB models & config
-│── docs/ # Tài liệu (SRS, diagram)
-│── README.md # Giới thiệu dự án
-
-
 ## ⚡ Cài đặt & Chạy thử
 
 ### Backend
@@ -65,7 +55,7 @@ git clone https://github.com/your-username/bookverse-frontend.git
 cd bookverse-frontend
 php -S localhost:8000
 ```
-
+---
 ## Thiết kế & Tài liệu
 
 Figma: Link thiết kế
