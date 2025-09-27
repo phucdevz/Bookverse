@@ -40,14 +40,14 @@ Dự án hướng tới **bảo mật, dễ mở rộng và trải nghiệm ngư
 ---
 
 ## 📂 Cấu trúc dự án
----
+
 Bookverse/
 │── frontend/ # Giao diện PHP + HTML + CSS
 │── backend/ # Node.js (Express)
 │── database/ # MongoDB models & config
 │── docs/ # Tài liệu (SRS, diagram)
 │── README.md # Giới thiệu dự án
----
+
 
 ## ⚡ Cài đặt & Chạy thử
 
