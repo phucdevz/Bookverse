@@ -1,0 +1,148 @@
+KẾ HOẠCH PHÁT TRIỂN DỰ ÁN BOOKVERSE MARKETPLACE
+I. Tổng quan dự án
+1. Giới thiệu
+
+Bookverse Marketplace là nền tảng thương mại điện tử chuyên biệt cho sách, cho phép người bán đăng tải, quản lý và kinh doanh sách của họ; người mua có thể tìm kiếm, đặt hàng, thanh toán và đánh giá sản phẩm.
+
+Hệ thống hướng tới mục tiêu tạo ra một sàn giao dịch sách trực tuyến chuyên nghiệp, an toàn và thông minh, giúp kết nối cộng đồng người yêu sách, nhà xuất bản, và các cá nhân kinh doanh.
+
+II. Mục tiêu
+
+Phát triển sàn thương mại điện tử chuyên về sách, đa vai trò (User, Seller, Admin).
+
+Cung cấp hệ thống quản lý sản phẩm, đơn hàng và người dùng.
+
+Tối ưu trải nghiệm UI/UX, tốc độ, và bảo mật dữ liệu.
+
+Cho phép mở rộng tính năng (chat giữa người bán & người mua, gợi ý sản phẩm, voucher...).
+
+III. Các vai trò hệ thống
+
+| Vai trò                        | Mô tả                                              | Quyền hạn chính                                          |
+| ------------------------------ | -------------------------------------------------- | -------------------------------------------------------- |
+| **Người dùng (User/Customer)** | Người mua sách, duyệt sản phẩm, đặt hàng, đánh giá | Tạo tài khoản, tìm kiếm, mua hàng, đánh giá, wishlist    |
+| **Người bán (Seller)**         | Cá nhân/doanh nghiệp đăng ký bán sách trên sàn     | Đăng sản phẩm, quản lý kho, theo dõi đơn hàng, doanh thu |
+| **Quản trị viên (Admin)**      | Quản lý toàn bộ hệ thống                           | Duyệt người bán, kiểm duyệt sản phẩm, thống kê, báo cáo  |
+
+IV. Công nghệ sử dụng
+
+| Thành phần         | Công nghệ                                | Mục đích                                          |
+| ------------------ | ---------------------------------------- | ------------------------------------------------- |
+| **Frontend**       | PHP, HTML5, CSS3, JavaScript             | Giao diện người dùng, hiển thị sản phẩm, giỏ hàng |
+| **Backend**        | Node.js (Express)                        | API, xử lý nghiệp vụ, xác thực JWT                |
+| **Database**       | MongoDB (Mongoose ORM)                   | Lưu trữ người dùng, sản phẩm, đơn hàng            |
+| **Thiết kế UI/UX** | Figma                                    | Thiết kế giao diện và flow người dùng             |
+| **Công cụ hỗ trợ** | GitHub, Postman, MongoDB Compass, VSCode | Lập trình & kiểm thử                              |
+| **Bảo mật**        | JWT, bcrypt, HTTPS                       | Xác thực & bảo vệ dữ liệu người dùng              |
+
+V. Mô hình tổng thể hệ thống
+
+┌────────────────────────────────────────────┐
+│                FRONTEND (PHP, JS)          │
+│ - Trang chủ, đăng nhập, đăng ký            │
+│ - Trang người bán, trang sản phẩm          │
+│ - Giỏ hàng, thanh toán                     │
+└───────────────┬────────────────────────────┘
+                │ (RESTful API)
+┌───────────────┴────────────────────────────┐
+│            BACKEND (Node.js + Express)     │
+│ - Auth Service (User, Seller, Admin)       │
+│ - Product Service                          │
+│ - Order & Payment Service                  │
+│ - Review & Notification Service            │
+└───────────────┬────────────────────────────┘
+                │ (Mongoose)
+┌───────────────┴────────────────────────────┐
+│              DATABASE (MongoDB)            │
+│  - Users, Sellers, Products, Orders, Reviews│
+│  - Transactions, Categories, Notifications  │
+└────────────────────────────────────────────┘
+VI. Chức năng chi tiết theo vai trò
+1️⃣ Người dùng (User)
+
+Đăng ký / đăng nhập / quên mật khẩu
+
+Duyệt danh mục, tìm kiếm sản phẩm
+
+Xem chi tiết sách (ảnh, mô tả, đánh giá, người bán)
+
+Thêm vào giỏ hàng, thanh toán trực tuyến
+
+Theo dõi đơn hàng, trạng thái vận chuyển
+
+Đánh giá, bình luận, wishlist
+
+Quản lý hồ sơ cá nhân
+
+2️⃣ Người bán (Seller)
+
+Đăng ký tài khoản người bán (qua xét duyệt Admin)
+
+Quản lý sản phẩm: thêm/sửa/xóa, cập nhật giá, tồn kho
+
+Quản lý đơn hàng: xác nhận, vận chuyển, hoàn tất
+
+Thống kê doanh thu, số lượng bán
+
+Nhận thông báo khi có đơn mới
+
+Quản lý thông tin cửa hàng
+
+3️⃣ Quản trị viên (Admin)
+
+Quản lý người dùng, người bán
+
+Duyệt tài khoản người bán mới
+
+Kiểm duyệt sản phẩm (phê duyệt/trả lại)
+
+Quản lý danh mục sách, nhà xuất bản
+
+Quản lý đơn hàng toàn hệ thống
+
+Thống kê doanh thu, người dùng, hoạt động
+
+Quản lý nội dung: banner, khuyến mãi, voucher
+
+VII. Cấu trúc thư mục
+
+Bookverse-Marketplace/
+├── frontend/              # PHP + HTML + CSS + JS
+│   ├── user/              # Giao diện người mua
+│   ├── seller/            # Giao diện người bán
+│   ├── admin/             # Dashboard quản trị
+│   └── shared/            # Header, Footer, Components
+│
+├── backend/               # Node.js (Express)
+│   ├── server.js
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   ├── middlewares/
+│   └── config/
+│
+├── database/              # Cấu hình MongoDB
+│   └── connection.js
+│
+├── docs/                  # Tài liệu (SRS, Diagram)
+└── README.md
+
+VIII. Kế hoạch triển khai chi tiết (Timeline)
+IX. Kế hoạch kiểm thử
+X. Quản lý rủi ro
+| Rủi ro                 | Nguyên nhân                 | Cách xử lý                                   |
+| ---------------------- | --------------------------- | -------------------------------------------- |
+| Trùng dữ liệu sản phẩm | Người bán nhập cùng tên     | Tạo khóa duy nhất cho SellerID + ProductName |
+| Lỗi API                | Sai dữ liệu gửi từ frontend | Log lỗi & xác thực body bằng middleware      |
+| Hệ thống chậm          | Query MongoDB chưa tối ưu   | Dùng index, phân trang server-side           |
+| Mất an toàn bảo mật    | JWT hoặc mật khẩu rò rỉ     | Hash mật khẩu bằng bcrypt, token timeout     |
+| Khó mở rộng            | Code chưa tách module       | Thiết kế mô hình MVC, REST chuẩn             |
+XI. Kết quả mong đợi
+
+Hoàn thiện sàn thương mại điện tử sách hoạt động ổn định.
+
+Hỗ trợ đa vai trò: User, Seller, Admin.
+
+Hệ thống API chuẩn RESTful, có thể mở rộng thành mobile app sau này.
+
+Giao diện thân thiện, hiện đại, dễ sử dụng, tối ưu tốc độ tải trang.
