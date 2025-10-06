@@ -207,3 +207,4 @@ categorySchema.methods.toJSON = function() {
 
 module.exports = mongoose.model('Category', categorySchema);
 
+
