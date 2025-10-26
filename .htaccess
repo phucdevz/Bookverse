@@ -1,0 +1,86 @@
+# Bookverse Frontend .htaccess Configuration
+
+# Enable URL Rewriting
+RewriteEngine On
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Cache Control for Static Assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType font/woff "access plus 1 month"
+    ExpiresByType font/woff2 "access plus 1 month"
+</IfModule>
+
+# Gzip Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Prevent access to sensitive files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Custom Error Pages
+ErrorDocument 404 /frontend/offline.html
+ErrorDocument 500 /frontend/offline.html
+
+# URL Rewriting Rules
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Auth pages
+RewriteRule ^login/?$ pages/auth/login.php [L]
+RewriteRule ^register/?$ pages/auth/register.php [L]
+RewriteRule ^forgot/?$ pages/auth/forgot.php [L]
+RewriteRule ^reset/?$ pages/auth/reset.php [L]
+
+# Product pages
+RewriteRule ^products/?$ pages/products/list.php [L]
+RewriteRule ^product/([0-9a-fA-F]{24})/?$ pages/products/detail.php?id=$1 [L]
+
+# Account pages
+RewriteRule ^account/?$ pages/account/profile.php [L]
+RewriteRule ^orders/?$ pages/account/orders.php [L]
+
+# Cart pages
+RewriteRule ^cart/?$ pages/cart/cart.php [L]
+
+# Seller pages
+RewriteRule ^seller/?$ pages/seller/dashboard.php [L]
+
+# Admin pages
+RewriteRule ^admin/?$ pages/admin/dashboard.php [L]
+
+# API routes (if needed)
+RewriteRule ^api/(.*)$ ../backend/$1 [L]
+
+# Default route
+RewriteRule ^$ index.php [L]
