@@ -1,0 +1,132 @@
+/* Logo Styles for Bookverse */
+
+/* Logo Container */
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo a:hover {
+    transform: scale(1.05);
+}
+
+/* Logo Image */
+.logo-img {
+    height: auto;
+    max-height: 60px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.logo-img:hover {
+    filter: brightness(1.1);
+}
+
+/* Responsive Logo Sizes */
+@media (max-width: 768px) {
+    .logo-img {
+        max-height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-img {
+        max-height: 40px;
+    }
+}
+
+/* Logo in Header */
+.header .logo {
+    z-index: 1001;
+}
+
+.header .logo-img {
+    max-height: 50px;
+}
+
+/* Logo in Auth Pages */
+.auth-header .logo {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.auth-header .logo-img {
+    max-height: 40px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Logo in Footer */
+.footer .logo {
+    margin-bottom: 1rem;
+}
+
+.footer .logo-img {
+    max-height: 40px;
+    opacity: 0.9;
+}
+
+/* Logo Animation */
+@keyframes logoFloat {
+    0%, 100% { 
+        transform: translateY(0px); 
+    }
+    50% { 
+        transform: translateY(-2px); 
+    }
+}
+
+.logo:hover .logo-img {
+    animation: logoFloat 2s ease-in-out infinite;
+}
+
+/* Logo with Text (for cases where we need both) */
+.logo-with-text {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-with-text .logo-img {
+    max-height: 48px;
+}
+
+.logo-with-text .logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Dark Mode Logo */
+@media (prefers-color-scheme: dark) {
+    .logo-img {
+        filter: brightness(1.1);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .logo-img {
+        max-height: 30px;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo-img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
